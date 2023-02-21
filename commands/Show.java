@@ -1,10 +1,7 @@
 package commands;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
+import command_processing.MyCollection;
 import commands.interfaces.Command;
-import resources.Route;
 
 /**
  * Класс Show реализует интерфейс Command
@@ -13,17 +10,14 @@ public class Show implements Command {
     /**
      * Коллекция маршрутов
      */
-    private final Route[] collection;
+    private final MyCollection collection;
 
     /**
      * Конструктор класса Show
      * @param collection коллекция маршрутов
      */
-    public Show(HashMap<Integer, Route> collection) {
-        this.collection = new Route[collection.size()];
-        int i = 0;
-        for(int key : collection.keySet())
-            this.collection[i++] = collection.get(key);
+    public Show(MyCollection collection) {
+        this.collection = collection;
     }
 
     /**
@@ -32,6 +26,11 @@ public class Show implements Command {
      */
     @Override
     public String execute() {
-        return Arrays.toString(collection);
+        int i = 0;
+        StringBuilder out = new StringBuilder("[");
+        for(int key : collection.getMap().keySet())
+            out.append(key).append(": ").append(collection.getMap().get(key));
+        out.append("]");
+        return out.toString();
     }
 }

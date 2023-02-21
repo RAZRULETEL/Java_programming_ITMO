@@ -2,12 +2,16 @@ import java.util.Scanner;
 
 import command_processing.CommandProcessor;
 import command_processing.YamlTools;
+import commands.RemoveGreater;
+import resources.Route;
+import resources.RouteBuilder;
 
 public class Main {
     private static final String filename = "data";
     public static void main(String[] args){
         Scanner consoleReader = new Scanner(System.in);
         CommandProcessor mainProcessor = new CommandProcessor(YamlTools.load(filename));
+        new RemoveGreater(new RouteBuilder(new Route()), null).execute();
         if(args.length > 0)
         while(true){
             if (consoleReader.hasNextLine()) {

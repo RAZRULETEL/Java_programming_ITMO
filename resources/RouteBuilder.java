@@ -2,15 +2,16 @@ package resources;
 
 import java.util.Random;
 
-import command_processing.MyCollection;
-
 public class RouteBuilder {
-    private MyCollection collection;
     private String description = null, error = "";
     private boolean isBuilding = true;
     private Route route = new Route(new Random().nextInt(Integer.MAX_VALUE));
     private Object buff;
 
+    public RouteBuilder(Route rt) {
+        route = rt;
+        isBuilding = false;
+    }
     public RouteBuilder() {
         description = "имя";
     }
@@ -65,13 +66,14 @@ public class RouteBuilder {
                     return null;
                 ((Coordinates)buff).setX(x);
                 nextDescription();
+                return null;
             }else{
                 int y = Integer.parseInt(param);
                 ((Coordinates)buff).setY(y);
                 nextDescription();
                 return (Coordinates) buff;
             }
-        }catch (NumberFormatException ignored){return null;}
+        }catch (NumberFormatException ignored){/*return null;*/}
         error = "Неккоректное число\n";
         return null;
     }
@@ -142,7 +144,6 @@ public class RouteBuilder {
     @Override
     public String toString() {
         return "RouteBuilder{" +
-                "collection=" + collection +
                 ", description='" + description + '\'' +
                 ", error='" + error + '\'' +
                 ", isBuilding=" + isBuilding +

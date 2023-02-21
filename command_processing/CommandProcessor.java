@@ -1,5 +1,7 @@
 package command_processing;
 
+import java.util.Objects;
+
 import commands.Clear;
 import commands.ExecuteFile;
 import commands.Exit;
@@ -24,7 +26,7 @@ public class CommandProcessor {
     private RouteBuilder builder = null;
     private Command delayedCommand = null;
     public CommandProcessor(MyCollection collection) {
-        this.collection = collection;
+        this.collection = Objects.requireNonNullElseGet(collection, MyCollection::new);
     }
     public CommandProcessor(Route[] collectionArray){
         collection = new MyCollection();
@@ -60,7 +62,7 @@ public class CommandProcessor {
             result =
                 switch (command){
                     case "help" -> new Help();
-                    case "show" -> new Show(collection.getMap());
+                    case "show" -> new Show(collection);
                     case "info" -> new Info(collection);
                     case "clear" -> new Clear(collection);
                     case "save" -> new Save(collection.getMap(), args);
