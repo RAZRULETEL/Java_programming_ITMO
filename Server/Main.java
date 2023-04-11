@@ -1,4 +1,4 @@
-package Server;
+п»їpackage Server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +23,11 @@ public class Main {
         if(System.getenv().containsKey("PORT"))
             port = Integer.parseInt(System.getenv("PORT"));
         else
-            System.out.println("Переменная окружения с портом не обнаружена");
+            System.out.println("РџРµСЂРµРјРµРЅРЅР°СЏ РѕРєСЂСѓР¶РµРЅРёСЏ СЃ РїРѕСЂС‚РѕРј РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅР°");
         if(System.getenv().containsKey("FILE_NAME"))
             filename = System.getenv("FILE_NAME");
         else
-            System.out.println("Переменная окружения не обнаружена");
+            System.out.println("РџРµСЂРµРјРµРЅРЅР°СЏ РѕРєСЂСѓР¶РµРЅРёСЏ РЅРµ РѕР±РЅР°СЂСѓР¶РµРЅР°");
 
         ServerCommandProcessor mainProcessor = new ServerCommandProcessor(new MyCollection(YamlTools.load(filename)));
 
@@ -48,7 +48,7 @@ public class Main {
             if (consoleReader.ready()){
                 mainProcessor.processLine(consoleReader.readLine())
                         .ifPresentOrElse(value -> System.out.println(mainProcessor.processCommand(value))
-                                , () -> {System.out.println("Похоже, что данной команды не существует, доступны следующие команды: "+mainProcessor.getServerCommands());});
+                                , () -> {System.out.println("РџРѕС…РѕР¶Рµ, С‡С‚Рѕ РґР°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, РґРѕСЃС‚СѓРїРЅС‹ СЃР»РµРґСѓСЋС‰РёРµ РєРѕРјР°РЅРґС‹: "+mainProcessor.getServerCommands());});
             }
             } catch (IOException ignored) {}
         }

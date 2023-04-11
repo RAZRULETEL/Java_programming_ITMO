@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 
 /**
- * Класс FilterByName реализует интерфейс Command.
- * Он используется для фильтрации коллекции по имени.
+ * РљР»Р°СЃСЃ FilterByName СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ Command.
+ * РћРЅ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё РєРѕР»Р»РµРєС†РёРё РїРѕ РёРјРµРЅРё.
  */
 public class StartsWithName implements Command, Serializable {
     private String name;
@@ -22,14 +22,14 @@ public class StartsWithName implements Command, Serializable {
     @Override
     public ResultDTO validate(String[] args){
         if(args != null && args.length == 1) {
-            StringDTO nameValidation = validateString(args[0], "подстрока");
+            StringDTO nameValidation = validateString(args[0], "РїРѕРґСЃС‚СЂРѕРєР°");
             if(nameValidation.getSuccess()) {
                 this.name = nameValidation.getStatus();
                 return new ResultDTO(true);
             }else
                 return nameValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
@@ -37,12 +37,12 @@ public class StartsWithName implements Command, Serializable {
         if(name != null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false, "Подстрока не может быть пустой");
+            return new StringDTO(false, "РџРѕРґСЃС‚СЂРѕРєР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№");
     }
 
     /**
-     * Выполняет фильтрацию по подстроке в имени.
-     * @return отсортированная по имени коллекция.
+     * Р’С‹РїРѕР»РЅСЏРµС‚ С„РёР»СЊС‚СЂР°С†РёСЋ РїРѕ РїРѕРґСЃС‚СЂРѕРєРµ РІ РёРјРµРЅРё.
+     * @return РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅР°СЏ РїРѕ РёРјРµРЅРё РєРѕР»Р»РµРєС†РёСЏ.
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {

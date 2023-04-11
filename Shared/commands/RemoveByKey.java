@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -8,10 +8,10 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для удаления элемента из коллекции по ключу.
+ * РљР»Р°СЃСЃ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚Р° РёР· РєРѕР»Р»РµРєС†РёРё РїРѕ РєР»СЋС‡Сѓ.
  */
 public class RemoveByKey implements Command, Serializable {
-    /** Аргументы команды. */
+    /** РђСЂРіСѓРјРµРЅС‚С‹ РєРѕРјР°РЅРґС‹. */
     private int key;
 
     public RemoveByKey() {}
@@ -19,25 +19,25 @@ public class RemoveByKey implements Command, Serializable {
     @Override
     public ResultDTO validate(String[] args) {
         if(args != null && args.length == 1) {
-            StringDTO keyValidation = validateInt(args[0], "ключ");
+            StringDTO keyValidation = validateInt(args[0], "РєР»СЋС‡");
             if(keyValidation.getSuccess()) {
                 this.key = Integer.parseInt(keyValidation.getStatus());
                 return new ResultDTO(true);
             }else
                 return keyValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     /**
-     * Удаляет элемент из коллекции по ключу.
-     * @return сообщение о результате выполнения команды.
+     * РЈРґР°Р»СЏРµС‚ СЌР»РµРјРµРЅС‚ РёР· РєРѕР»Р»РµРєС†РёРё РїРѕ РєР»СЋС‡Сѓ.
+     * @return СЃРѕРѕР±С‰РµРЅРёРµ Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹.
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
         if (collection.remove(key))
-            return new StringDTO(true, "Элемент успешно удалён");
+            return new StringDTO(true, "Р­Р»РµРјРµРЅС‚ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»С‘РЅ");
         else
-            return new StringDTO(false, "Элемента с таким ключом не существует");
+            return new StringDTO(false, "Р­Р»РµРјРµРЅС‚Р° СЃ С‚Р°РєРёРј РєР»СЋС‡РѕРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
     }
 }

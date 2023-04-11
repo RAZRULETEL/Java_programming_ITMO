@@ -1,4 +1,4 @@
-package Server.command_processing;
+п»їpackage Server.command_processing;
 
 import java.util.AbstractCollection;
 import java.util.Collection;
@@ -10,7 +10,7 @@ import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 
 /**
- * Класс MyCollection используется для хранения и управления коллекцией маршрутов.
+ * РљР»Р°СЃСЃ MyCollection РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ Рё СѓРїСЂР°РІР»РµРЅРёСЏ РєРѕР»Р»РµРєС†РёРµР№ РјР°СЂС€СЂСѓС‚РѕРІ.
  */
 public class MyCollection extends AbstractRouteCollection {
 
@@ -24,7 +24,7 @@ public class MyCollection extends AbstractRouteCollection {
     public MyCollection() {}
 
     /**
-     * Возвращает копию коллекции
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕРїРёСЋ РєРѕР»Р»РµРєС†РёРё
      * @return all collection
      */
     @Override
@@ -55,14 +55,14 @@ public class MyCollection extends AbstractRouteCollection {
         return collection.remove(id) != null;
     }
     /**
-     * @return размер коллекции
+     * @return СЂР°Р·РјРµСЂ РєРѕР»Р»РµРєС†РёРё
      */
     @Override
     public int size() {
         return collection.size();
     }
     /**
-     * Очищает коллекцию
+     * РћС‡РёС‰Р°РµС‚ РєРѕР»Р»РµРєС†РёСЋ
      */
     @Override
     public void clear() {

@@ -1,4 +1,4 @@
-package Shared.resources;
+п»їpackage Shared.resources;
 
 import static Shared.resources.Coordinates.MIN_X;
 import static Shared.resources.Route.MIN_DISTANCE;
@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class RouteBuilder implements Serializable {
-    private static final String[] FIELDS_DESCRIPTIONS = new String[]{"name типа % маршрута", "x типа % для Coordinates", "y типа % для Coordinates", "x типа % для Location from", "y типа % для Location from", "z типа % для Location from", "name типа % для Location from", "x типа % для Location to", "y типа % для Location to", "z типа % для Location to", "name типа % для Location to", "расстояние типа %"};
+    private static final String[] FIELDS_DESCRIPTIONS = new String[]{"name С‚РёРїР° % РјР°СЂС€СЂСѓС‚Р°", "x С‚РёРїР° % РґР»СЏ Coordinates", "y С‚РёРїР° % РґР»СЏ Coordinates", "x С‚РёРїР° % РґР»СЏ Location from", "y С‚РёРїР° % РґР»СЏ Location from", "z С‚РёРїР° % РґР»СЏ Location from", "name С‚РёРїР° % РґР»СЏ Location from", "x С‚РёРїР° % РґР»СЏ Location to", "y С‚РёРїР° % РґР»СЏ Location to", "z С‚РёРїР° % РґР»СЏ Location to", "name С‚РёРїР° % РґР»СЏ Location to", "СЂР°СЃСЃС‚РѕСЏРЅРёРµ С‚РёРїР° %"};
 
     private String description, error = "", fieldType = "", fieldRequirments = "";
     private Object buff;
@@ -35,23 +35,23 @@ public class RouteBuilder implements Serializable {
     }
 
     private Integer createDistance(){
-        fieldRequirments = "больше "+ MIN_DISTANCE;
+        fieldRequirments = "Р±РѕР»СЊС€Рµ "+ MIN_DISTANCE;
         Integer dist = createInt(true);
         while(dist != null && dist < MIN_DISTANCE){
             prevDescription();
-            fieldRequirments = "больше "+MIN_DISTANCE;
-            error = "Число меньше минимального\n";
+            fieldRequirments = "Р±РѕР»СЊС€Рµ "+MIN_DISTANCE;
+            error = "Р§РёСЃР»Рѕ РјРµРЅСЊС€Рµ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ\n";
             dist = createInt(true);
         }
         return dist;
     }
     private Coordinates createCoords(){
-        fieldRequirments = "больше "+MIN_X;
+        fieldRequirments = "Р±РѕР»СЊС€Рµ "+MIN_X;
         Double x = createDouble(false);
         while(x < MIN_X){
             prevDescription();
-            fieldRequirments = "больше "+MIN_X;
-            error = "число слишком маленькое\n";
+            fieldRequirments = "Р±РѕР»СЊС€Рµ "+MIN_X;
+            error = "С‡РёСЃР»Рѕ СЃР»РёС€РєРѕРј РјР°Р»РµРЅСЊРєРѕРµ\n";
             x = createDouble(false);
         }
         Coordinates coords = new Coordinates();
@@ -76,11 +76,11 @@ public class RouteBuilder implements Serializable {
     }
 
     /**
-     * Метод для получения полного описания поля, ввод которого запрашивается
-     * @return строка, описывающая запрашиваемые данные
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕР»РЅРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РїРѕР»СЏ, РІРІРѕРґ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°РїСЂР°С€РёРІР°РµС‚СЃСЏ
+     * @return СЃС‚СЂРѕРєР°, РѕРїРёСЃС‹РІР°СЋС‰Р°СЏ Р·Р°РїСЂР°С€РёРІР°РµРјС‹Рµ РґР°РЅРЅС‹Рµ
      */
     public String getDescription() {
-        return error+"Введите "+description.replace("%", fieldType+(!fieldRequirments.equals("")?" "+fieldRequirments:""))+":";
+        return error+"Р’РІРµРґРёС‚Рµ "+description.replace("%", fieldType+(!fieldRequirments.equals("")?" "+fieldRequirments:""))+":";
     }
     private void nextDescription(){
         error = "";
@@ -98,7 +98,7 @@ public class RouteBuilder implements Serializable {
         System.out.println(getDescription());
         String line = readInputLine();
         if(!canBeEmpty && line.equals("")) {
-            error = "Невалидная строка\n";
+            error = "РќРµРІР°Р»РёРґРЅР°СЏ СЃС‚СЂРѕРєР°\n";
             return createString(canBeEmpty);
         }
         nextDescription();
@@ -115,7 +115,7 @@ public class RouteBuilder implements Serializable {
             nextDescription();
             return out;
         }catch (NumberFormatException e){
-            error = "Неккоректное число\n";
+            error = "РќРµРєРєРѕСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ\n";
             return createInt(canBeNull);
         }
     }
@@ -130,7 +130,7 @@ public class RouteBuilder implements Serializable {
             nextDescription();
             return doubleValue;
         }catch (NumberFormatException e){
-            error = "Неккоректное число\n";
+            error = "РќРµРєРєРѕСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ\n";
             return createDouble(canBeNull);
         }
     }
@@ -145,20 +145,20 @@ public class RouteBuilder implements Serializable {
             nextDescription();
             return floatVal;
         }catch (NumberFormatException e){
-            error = "Неккоректное число\n";
+            error = "РќРµРєРєРѕСЂРµРєС‚РЅРѕРµ С‡РёСЃР»Рѕ\n";
             return createFloat(canBeNull);
         }
     }
 
     /**
-     * Метод для чтения следующей строки из потока ввода
-     * @return строку из потока переданного в конструктор
-     * @throws NoSuchElementException если данные в потоке закончились
+     * РњРµС‚РѕРґ РґР»СЏ С‡С‚РµРЅРёСЏ СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРё РёР· РїРѕС‚РѕРєР° РІРІРѕРґР°
+     * @return СЃС‚СЂРѕРєСѓ РёР· РїРѕС‚РѕРєР° РїРµСЂРµРґР°РЅРЅРѕРіРѕ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+     * @throws NoSuchElementException РµСЃР»Рё РґР°РЅРЅС‹Рµ РІ РїРѕС‚РѕРєРµ Р·Р°РєРѕРЅС‡РёР»РёСЃСЊ
      */
     private String readInputLine(){
         if(lineReader.hasNextLine())
             return lineReader.nextLine();
-        else throw new NoSuchElementException("Недостаточно данных для создания объекта");
+        else throw new NoSuchElementException("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РґР°РЅРЅС‹С… РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р°");
     }
 
 }

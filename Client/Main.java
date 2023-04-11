@@ -1,4 +1,4 @@
-package Client;
+ï»¿package Client;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class Main {
         if(System.getenv().containsKey("PORT"))
             port = Integer.parseInt(System.getenv("PORT"));
         else
-            System.out.println("Ïåðåìåííàÿ îêðóæåíèÿ PORT íå îáíàðóæåíà");
+            System.out.println("ÐŸÐµÑ€ÐµÐ¼ÐµÐ½Ð½Ð°Ñ Ð¾ÐºÑ€ÑƒÐ¶ÐµÐ½Ð¸Ñ PORT Ð½Ðµ Ð¾Ð±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð°");
         Scanner consoleReader = new Scanner(System.in);
         ClientCommandProcessor mainProcessor = new ClientCommandProcessor();
 
@@ -23,7 +23,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Ââîäèòå êîìàíäû, ëèáî help äëÿ ñïèñêà");
+        System.out.println("Ð’Ð²Ð¾Ð´Ð¸Ñ‚Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹, Ð»Ð¸Ð±Ð¾ help Ð´Ð»Ñ ÑÐ¿Ð¸ÑÐºÐ°");
         System.out.print("-->");
         if(args.length > 0)
         for(;;)

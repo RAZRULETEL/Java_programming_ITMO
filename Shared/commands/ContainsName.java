@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.util.ArrayList;
 
@@ -16,14 +16,14 @@ public class ContainsName implements Command {
     @Override
     public ResultDTO validate(String[] args){
         if(args != null && args.length == 1) {
-            StringDTO nameValidation = validateString(args[0], "подстрока");
+            StringDTO nameValidation = validateString(args[0], "РїРѕРґСЃС‚СЂРѕРєР°");
             if(nameValidation.getSuccess()) {
                 this.name = nameValidation.getStatus();
                 return new ResultDTO(true);
             }else
                 return nameValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
 }
 
     @Override
@@ -31,7 +31,7 @@ public class ContainsName implements Command {
         if(name != null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false, "Подстрока не может быть пустой");
+            return new StringDTO(false, "РџРѕРґСЃС‚СЂРѕРєР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№");
     }
 
     @Override

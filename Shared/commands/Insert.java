@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import Shared.commands.interfaces.ObjectCommand;
 import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 /**
- * Класс для добавления объекта в коллекцию
+ * РљР»Р°СЃСЃ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚Р° РІ РєРѕР»Р»РµРєС†РёСЋ
  */
 public class Insert implements ObjectCommand, Serializable {
     private Route route;
@@ -21,14 +21,14 @@ public class Insert implements ObjectCommand, Serializable {
     @Override
     public ResultDTO validate(String[] args) {
         if(args != null && args.length == 1) {
-            StringDTO keyValidation = validateInt(args[0], "ключ");
+            StringDTO keyValidation = validateInt(args[0], "РєР»СЋС‡");
             if(keyValidation.getSuccess()){
                 this.key = Integer.parseInt(keyValidation.getStatus());
                 return new ResultDTO(true);
             }else
                 return keyValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
@@ -36,17 +36,17 @@ public class Insert implements ObjectCommand, Serializable {
         if(route != null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false, "Route не может быть null");
+            return new StringDTO(false, "Route РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
     }
     /**
-     * Метод для добавления объекта в коллекцию
-     * @return строка с результатом добавления
+     * РњРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РѕР±СЉРµРєС‚Р° РІ РєРѕР»Р»РµРєС†РёСЋ
+     * @return СЃС‚СЂРѕРєР° СЃ СЂРµР·СѓР»СЊС‚Р°С‚РѕРј РґРѕР±Р°РІР»РµРЅРёСЏ
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
         collection.put(key, route);
         route = null;
-        return new StringDTO(true, "Объект " + collection.get(key) + " успешно добавлен");
+        return new StringDTO(true, "РћР±СЉРµРєС‚ " + collection.get(key) + " СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ");
     }
 
     @Override
@@ -55,6 +55,6 @@ public class Insert implements ObjectCommand, Serializable {
             route = ((Route)obj);
             return new ResultDTO(true);
         }else
-            return new StringDTO(false, "Требуется объект типа Route");
+            return new StringDTO(false, "РўСЂРµР±СѓРµС‚СЃСЏ РѕР±СЉРµРєС‚ С‚РёРїР° Route");
     }
 }

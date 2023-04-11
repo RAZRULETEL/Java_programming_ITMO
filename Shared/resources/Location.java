@@ -1,4 +1,4 @@
-package Shared.resources;
+﻿package Shared.resources;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,7 +7,7 @@ public class Location implements Serializable {
     private double x;
     private float y;
     private double z;
-    private String name; //Поле не может быть null
+    private String name; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
 
     public Location() {}
 
@@ -41,7 +41,7 @@ public class Location implements Serializable {
 
     public void setName(String name) {
         if(name == null)
-            throw new IllegalArgumentException("name не может быть null");
+            throw new IllegalArgumentException("name РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
         this.name = name;
     }
 

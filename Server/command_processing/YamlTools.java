@@ -1,4 +1,4 @@
-package Server.command_processing;
+п»їpackage Server.command_processing;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,15 +22,15 @@ import Server.network_modules.ConnectionManager;
 import Shared.resources.Route;
 
 /**
- * Класс YamlTools предоставляет методы для работы с файлами формата YAML.
+ * РљР»Р°СЃСЃ YamlTools РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµС‚ РјРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С„Р°Р№Р»Р°РјРё С„РѕСЂРјР°С‚Р° YAML.
  */
 public class YamlTools {
     private static final Logger LOGGER = LoggerFactory.getLogger(YamlTools.class);
     /**
-     * Загружает данные из файла формата YAML.
+     * Р—Р°РіСЂСѓР¶Р°РµС‚ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р° С„РѕСЂРјР°С‚Р° YAML.
      *
-     * @param fileName имя файла
-     * @return массив объектов Route
+     * @param fileName РёРјСЏ С„Р°Р№Р»Р°
+     * @return РјР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ Route
      */
     public static HashMap<Integer, Route> load(String fileName){
         LOGGER.info("Loading collection from file {}", fileName);
@@ -40,7 +40,7 @@ public class YamlTools {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Такого файла не существует");
+            System.out.println("РўР°РєРѕРіРѕ С„Р°Р№Р»Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
             LOGGER.error(Arrays.toString(e.getStackTrace()));
             return null;
         }
@@ -55,11 +55,11 @@ public class YamlTools {
         try {
             collection = objectMapper.readValue(yamlContent.toString(), typeRef);
         }catch (MismatchedInputException e){
-            System.out.println("Файл пустой, либо содержит неккоректные данные");
+            System.out.println("Р¤Р°Р№Р» РїСѓСЃС‚РѕР№, Р»РёР±Рѕ СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ");
             LOGGER.error(Arrays.toString(e.getStackTrace()));
         }catch (IOException e) {
             LOGGER.error(Arrays.toString(e.getStackTrace()));
-            System.out.println("Непредвиденная ошибка чтения файла");
+            System.out.println("РќРµРїСЂРµРґРІРёРґРµРЅРЅР°СЏ РѕС€РёР±РєР° С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°");
         }
         HashMap<Integer, Route> output = new HashMap<Integer, Route>();
 
@@ -73,11 +73,11 @@ public class YamlTools {
         return output;
     }
     /**
-     * Сохраняет данные в файл формата YAML.
+     * РЎРѕС…СЂР°РЅСЏРµС‚ РґР°РЅРЅС‹Рµ РІ С„Р°Р№Р» С„РѕСЂРјР°С‚Р° YAML.
      *
-     * @param collection коллекция объектов Route
-     * @param fileName имя файла
-     * @return true, если сохранение прошло успешно, иначе false
+     * @param collection РєРѕР»Р»РµРєС†РёСЏ РѕР±СЉРµРєС‚РѕРІ Route
+     * @param fileName РёРјСЏ С„Р°Р№Р»Р°
+     * @return true, РµСЃР»Рё СЃРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ, РёРЅР°С‡Рµ false
      */
     public static boolean save(HashMap<Integer, Route> collection, String fileName){
         LOGGER.info("Saving collection to file {}", fileName);

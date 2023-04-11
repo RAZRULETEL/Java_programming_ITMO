@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -23,14 +23,14 @@ public class CheckIdExists implements Command, Serializable {
             }else
                 return idValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
     public ResultDTO isValid() {
         if(id >= Route.MIN_ID)
             return new ResultDTO(true);
-        else return new StringDTO(false, "Неккоректные данные: id должен быть не меньше "+Route.MIN_ID);
+        else return new StringDTO(false, "РќРµРєРєРѕСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ: id РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµ РјРµРЅСЊС€Рµ "+Route.MIN_ID);
     }
 
     @Override

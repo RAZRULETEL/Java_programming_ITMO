@@ -1,4 +1,4 @@
-package Client.command_processing;
+п»їpackage Client.command_processing;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,7 +71,7 @@ public class ClientCommandProcessor extends CommandProcessor {
         try {
              result = commandMap.get(command);
              if(result == null){
-                 printResult(new StringDTO(false, "Данной команды не существует"));
+                 printResult(new StringDTO(false, "Р”Р°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚"));
                  return Optional.empty();
              }
              ResultDTO validationResult = result.validate(args);
@@ -103,6 +103,6 @@ public class ClientCommandProcessor extends CommandProcessor {
             if(NetworkTools.sendCommand(command))
                 return NetworkTools.receiveAnswer();
             else
-                return new StringDTO(false, "отправка команды прервана");
+                return new StringDTO(false, "РѕС‚РїСЂР°РІРєР° РєРѕРјР°РЅРґС‹ РїСЂРµСЂРІР°РЅР°");
     }
 }

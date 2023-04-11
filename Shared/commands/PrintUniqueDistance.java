@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,18 +10,18 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для печати уникальных расстояний
+ * РљР»Р°СЃСЃ РґР»СЏ РїРµС‡Р°С‚Рё СѓРЅРёРєР°Р»СЊРЅС‹С… СЂР°СЃСЃС‚РѕСЏРЅРёР№
  */
 public class PrintUniqueDistance implements Command, Serializable {
     /**
-     * Конструктор для создания объекта
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р°
      */
     public PrintUniqueDistance() {
     }
 
     /**
-     * Метод для печати уникальных расстояний маршрутов
-     * @return строка с уникальными расстояниями
+     * РњРµС‚РѕРґ РґР»СЏ РїРµС‡Р°С‚Рё СѓРЅРёРєР°Р»СЊРЅС‹С… СЂР°СЃСЃС‚РѕСЏРЅРёР№ РјР°СЂС€СЂСѓС‚РѕРІ
+     * @return СЃС‚СЂРѕРєР° СЃ СѓРЅРёРєР°Р»СЊРЅС‹РјРё СЂР°СЃСЃС‚РѕСЏРЅРёСЏРјРё
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {

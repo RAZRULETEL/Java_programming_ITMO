@@ -1,4 +1,4 @@
-package Shared.commands.interfaces;
+﻿package Shared.commands.interfaces;
 
 import java.io.InputStream;
 

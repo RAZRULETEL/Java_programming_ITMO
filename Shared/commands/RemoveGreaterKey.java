@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -8,10 +8,10 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для удаления элементов из коллекции по заданному ключу
+ * РљР»Р°СЃСЃ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёР· РєРѕР»Р»РµРєС†РёРё РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РєР»СЋС‡Сѓ
  */
 public class RemoveGreaterKey implements Command, Serializable {
-    /** Ключ */
+    /** РљР»СЋС‡ */
     private int key;
 
     public RemoveGreaterKey() {
@@ -21,19 +21,19 @@ public class RemoveGreaterKey implements Command, Serializable {
     @Override
     public ResultDTO validate(String[] args) {
         if(args != null && args.length == 1) {
-            StringDTO keyValidation = validateInt(args[0], "ключ");
+            StringDTO keyValidation = validateInt(args[0], "РєР»СЋС‡");
             if(keyValidation.getSuccess()) {
                 this.key = Integer.parseInt(keyValidation.getStatus());
                 return new ResultDTO(true);
             }else
                 return keyValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
 /**
- * Метод для удаления элементов из коллекции с ключом превышающим заданный ключ
- * @return строка с информацией о количестве удалённых элементов
+ * РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ РёР· РєРѕР»Р»РµРєС†РёРё СЃ РєР»СЋС‡РѕРј РїСЂРµРІС‹С€Р°СЋС‰РёРј Р·Р°РґР°РЅРЅС‹Р№ РєР»СЋС‡
+ * @return СЃС‚СЂРѕРєР° СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РєРѕР»РёС‡РµСЃС‚РІРµ СѓРґР°Р»С‘РЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
  */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
@@ -43,6 +43,6 @@ public class RemoveGreaterKey implements Command, Serializable {
                 collection.remove(key);
                 count++;
             }
-        return new StringDTO(true, "Удалено "+count+" элементов");
+        return new StringDTO(true, "РЈРґР°Р»РµРЅРѕ "+count+" СЌР»РµРјРµРЅС‚РѕРІ");
     }
 }

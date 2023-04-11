@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -8,22 +8,22 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для очистки коллекции
+ * РљР»Р°СЃСЃ РґР»СЏ РѕС‡РёСЃС‚РєРё РєРѕР»Р»РµРєС†РёРё
  */
 public class Clear implements Command, Serializable {
     /**
-     * Конструктор для создания объекта
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р°
      */
     public Clear() {
     }
 
     /**
-     * Метод для очистки коллекции
-     * @return строка, сообщающая об успешном выполнении операции
+     * РњРµС‚РѕРґ РґР»СЏ РѕС‡РёСЃС‚РєРё РєРѕР»Р»РµРєС†РёРё
+     * @return СЃС‚СЂРѕРєР°, СЃРѕРѕР±С‰Р°СЋС‰Р°СЏ РѕР± СѓСЃРїРµС€РЅРѕРј РІС‹РїРѕР»РЅРµРЅРёРё РѕРїРµСЂР°С†РёРё
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
         collection.clear();
-        return new StringDTO(true,  "Коллекция успешно очищена");
+        return new StringDTO(true,  "РљРѕР»Р»РµРєС†РёСЏ СѓСЃРїРµС€РЅРѕ РѕС‡РёС‰РµРЅР°");
     }
 }

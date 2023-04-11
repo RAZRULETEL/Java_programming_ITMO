@@ -1,4 +1,4 @@
-package Shared.resources;
+﻿package Shared.resources;
 
 import java.util.HashMap;
 

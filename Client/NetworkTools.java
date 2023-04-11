@@ -1,4 +1,4 @@
-package Client;
+п»їpackage Client;
 
 import org.yaml.snakeyaml.util.ArrayUtils;
 
@@ -44,16 +44,16 @@ public class NetworkTools {
     }
     public static boolean sendCommand(Command command){
         if(command == null){
-            System.out.println("Произошло что-то не хорошее, ошибка формирования объекта команды");
+            System.out.println("РџСЂРѕРёР·РѕС€Р»Рѕ С‡С‚Рѕ-С‚Рѕ РЅРµ С…РѕСЂРѕС€РµРµ, РѕС€РёР±РєР° С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РѕР±СЉРµРєС‚Р° РєРѕРјР°РЅРґС‹");
             return false;
         }
         if(!(command instanceof Serializable))
-            throw new UnsupportedOperationException("Данную команду отправить нельзя");
+            throw new UnsupportedOperationException("Р”Р°РЅРЅСѓСЋ РєРѕРјР°РЅРґСѓ РѕС‚РїСЂР°РІРёС‚СЊ РЅРµР»СЊР·СЏ");
         byte[] payload;
         try {
             payload = Serializer.serialize(command);
         } catch (IOException e) {
-            System.out.println("Ошибка сериализации команды");
+            System.out.println("РћС€РёР±РєР° СЃРµСЂРёР°Р»РёР·Р°С†РёРё РєРѕРјР°РЅРґС‹");
             return false;
         }
         try {
@@ -65,7 +65,7 @@ public class NetworkTools {
             }else
                 socket.send(request);
         } catch (IOException e) {
-            System.out.println("Возникла ошибка при отправке команды");
+            System.out.println("Р’РѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ РєРѕРјР°РЅРґС‹");
             return false;
         }
         return true;
@@ -83,9 +83,9 @@ public class NetworkTools {
         try {
             return (ResultDTO) Serializer.deserialize(answerBytes);
         } catch (IOException e) {
-            System.out.println("Ошибка десереализации ответа");
+            System.out.println("РћС€РёР±РєР° РґРµСЃРµСЂРµР°Р»РёР·Р°С†РёРё РѕС‚РІРµС‚Р°");
         } catch (ClassCastException | ClassNotFoundException e) {
-            System.out.println("Получен ответ неправильного типа");
+            System.out.println("РџРѕР»СѓС‡РµРЅ РѕС‚РІРµС‚ РЅРµРїСЂР°РІРёР»СЊРЅРѕРіРѕ С‚РёРїР°");
         }
         return null;
     }
@@ -96,9 +96,9 @@ public class NetworkTools {
             socket.receive(answerPacket);
             return answerPacket.getData();
         }catch (SocketTimeoutException e){
-            System.out.println("Сервер не ответил в течении "+ANSWER_STAND_BY_TIMEOUT+" миллисекунд, похоже что он не доступен");
+            System.out.println("РЎРµСЂРІРµСЂ РЅРµ РѕС‚РІРµС‚РёР» РІ С‚РµС‡РµРЅРёРё "+ANSWER_STAND_BY_TIMEOUT+" РјРёР»Р»РёСЃРµРєСѓРЅРґ, РїРѕС…РѕР¶Рµ С‡С‚Рѕ РѕРЅ РЅРµ РґРѕСЃС‚СѓРїРµРЅ");
         }catch (IOException e){
-            System.out.println("Возникла ошибка при получении ответа от сервера");
+            System.out.println("Р’РѕР·РЅРёРєР»Р° РѕС€РёР±РєР° РїСЂРё РїРѕР»СѓС‡РµРЅРёРё РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР°");
         }
         return null;
     }
@@ -117,7 +117,7 @@ public class NetworkTools {
                 Thread.sleep(100);
             }
         } catch (IOException | InterruptedException e) {
-            System.out.println("Разделить команду не удалось, отправка прервана");
+            System.out.println("Р Р°Р·РґРµР»РёС‚СЊ РєРѕРјР°РЅРґСѓ РЅРµ СѓРґР°Р»РѕСЃСЊ, РѕС‚РїСЂР°РІРєР° РїСЂРµСЂРІР°РЅР°");
         }
     }
 

@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -7,11 +7,11 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для выхода из программы
+ * РљР»Р°СЃСЃ РґР»СЏ РІС‹С…РѕРґР° РёР· РїСЂРѕРіСЂР°РјРјС‹
  */
 public class Exit implements Command, Serializable {
     /**
-     * Конструктор для выхода из программы
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РІС‹С…РѕРґР° РёР· РїСЂРѕРіСЂР°РјРјС‹
      */
     public Exit() {}
 
@@ -22,7 +22,7 @@ public class Exit implements Command, Serializable {
     }
 
     /**
-     * Метод для выполнения команды
+     * РњРµС‚РѕРґ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹
      * @return null
      */
     @Override

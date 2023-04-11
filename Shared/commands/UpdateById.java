@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -25,7 +25,7 @@ public class UpdateById implements ObjectCommand, Serializable {
             }else
                 return keyValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
@@ -33,9 +33,9 @@ public class UpdateById implements ObjectCommand, Serializable {
         for(int k : collection.getAll().keySet())
             if(collection.getAll().get(k).getId() == id) {
                 collection.put(id, route);
-                return new StringDTO(true, "Объект "+route+" успешно изменён");
+                return new StringDTO(true, "РћР±СЉРµРєС‚ "+route+" СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅС‘РЅ");
             }
-            return new StringDTO(false, "Объекта с данным id не существует");
+            return new StringDTO(false, "РћР±СЉРµРєС‚Р° СЃ РґР°РЅРЅС‹Рј id РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
     }
 
@@ -45,6 +45,6 @@ public class UpdateById implements ObjectCommand, Serializable {
             route = ((Route)obj);
             return new ResultDTO(true);
         }else
-            return new StringDTO(false, "Требуется объект типа Route");
+            return new StringDTO(false, "РўСЂРµР±СѓРµС‚СЃСЏ РѕР±СЉРµРєС‚ С‚РёРїР° Route");
     }
 }

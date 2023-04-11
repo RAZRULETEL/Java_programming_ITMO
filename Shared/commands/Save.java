@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import Server.command_processing.YamlTools;
 import Shared.command_processing.ResultDTO;
@@ -8,10 +8,10 @@ import Shared.resources.AbstractRouteCollection;
 
 
 /**
- * Класс Save используется для сохранения коллекции в файл.
+ * РљР»Р°СЃСЃ Save РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РєРѕР»Р»РµРєС†РёРё РІ С„Р°Р№Р».
  */
 public class Save implements Command {
-    /** Аргументы команды */
+    /** РђСЂРіСѓРјРµРЅС‚С‹ РєРѕРјР°РЅРґС‹ */
     private String fileName = "data.yaml";
 
     public Save() {}
@@ -20,7 +20,7 @@ public class Save implements Command {
     public ResultDTO validate(String[] args) {
         if(args != null && args.length < 2){
             if(args.length == 1){
-                StringDTO nameValidation = validateString(args[0], "подстрока");
+                StringDTO nameValidation = validateString(args[0], "РїРѕРґСЃС‚СЂРѕРєР°");
                 if(nameValidation.getSuccess()) {
                     this.fileName = nameValidation.getStatus();
                     return new ResultDTO(true);
@@ -30,7 +30,7 @@ public class Save implements Command {
             fileName = "data.yaml";
             return new ResultDTO(true);
         }else{
-            return new StringDTO(false, "Требуется не более 1 аргумента");
+            return new StringDTO(false, "РўСЂРµР±СѓРµС‚СЃСЏ РЅРµ Р±РѕР»РµРµ 1 Р°СЂРіСѓРјРµРЅС‚Р°");
         }
     }
 
@@ -39,21 +39,21 @@ public class Save implements Command {
         if(fileName != null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false, "Название файла не указано");
+            return new StringDTO(false, "РќР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РЅРµ СѓРєР°Р·Р°РЅРѕ");
     }
 
     /**
-     * Метод выполнения команды
-     * @return сообщение о результате выполнения
+     * РњРµС‚РѕРґ РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹
+     * @return СЃРѕРѕР±С‰РµРЅРёРµ Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
         String fileName = this.fileName;
         this.fileName = null;
         if(YamlTools.save(collection.getAll(), fileName))
-            return new StringDTO(true, "Коллекция успешно сохранена");
+            return new StringDTO(true, "РљРѕР»Р»РµРєС†РёСЏ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅР°");
         else
-            return new StringDTO(false, "Ошибка сохранения коллекции");
+            return new StringDTO(false, "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РєРѕР»Р»РµРєС†РёРё");
 
     }
 }

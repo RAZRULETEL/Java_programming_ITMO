@@ -1,4 +1,4 @@
-package Shared.command_processing;
+﻿package Shared.command_processing;
 
 public class StringDTO extends ResultDTO{
     private final String status;

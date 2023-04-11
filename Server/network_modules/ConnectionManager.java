@@ -1,4 +1,4 @@
-package Server.network_modules;
+п»їpackage Server.network_modules;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,8 +60,8 @@ public class ConnectionManager {
     }
 
     /**
-     * Метод для проверки наличия поступления данных, при наличии сохраняет их в HashMap с ключом - адресом постпления
-     * @return возвращает адрес откуда пришли данные, либо null если никакие данные не были получены
+     * РњРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР°Р»РёС‡РёСЏ РїРѕСЃС‚СѓРїР»РµРЅРёСЏ РґР°РЅРЅС‹С…, РїСЂРё РЅР°Р»РёС‡РёРё СЃРѕС…СЂР°РЅСЏРµС‚ РёС… РІ HashMap СЃ РєР»СЋС‡РѕРј - Р°РґСЂРµСЃРѕРј РїРѕСЃС‚РїР»РµРЅРёСЏ
+     * @return РІРѕР·РІСЂР°С‰Р°РµС‚ Р°РґСЂРµСЃ РѕС‚РєСѓРґР° РїСЂРёС€Р»Рё РґР°РЅРЅС‹Рµ, Р»РёР±Рѕ null РµСЃР»Рё РЅРёРєР°РєРёРµ РґР°РЅРЅС‹Рµ РЅРµ Р±С‹Р»Рё РїРѕР»СѓС‡РµРЅС‹
      */
     public SocketAddress receiveNextPacket(){
         SocketAddress clientAdress = null;
@@ -85,18 +85,18 @@ public class ConnectionManager {
     }
 
     /**
-     * Метод для получения байтов запроса
-     * @param address адресс, с которого запрос был получен
-     * @return последний запрос, полученный от даного адресса
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ Р±Р°Р№С‚РѕРІ Р·Р°РїСЂРѕСЃР°
+     * @param address Р°РґСЂРµСЃСЃ, СЃ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°РїСЂРѕСЃ Р±С‹Р» РїРѕР»СѓС‡РµРЅ
+     * @return РїРѕСЃР»РµРґРЅРёР№ Р·Р°РїСЂРѕСЃ, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РѕС‚ РґР°РЅРѕРіРѕ Р°РґСЂРµСЃСЃР°
      */
     public byte[] getRequestBytes(SocketAddress address){
         return requests.get(address);
     }
 
     /**
-     * Метод для отправки ответа клиенту
-     * @param address адрес получателя
-     * @param message данные для отправки
+     * РњРµС‚РѕРґ РґР»СЏ РѕС‚РїСЂР°РІРєРё РѕС‚РІРµС‚Р° РєР»РёРµРЅС‚Сѓ
+     * @param address Р°РґСЂРµСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+     * @param message РґР°РЅРЅС‹Рµ РґР»СЏ РѕС‚РїСЂР°РІРєРё
      */
     public void answerClient(SocketAddress address, ResultDTO message){
         requests.remove(address);
@@ -119,9 +119,9 @@ public class ConnectionManager {
     }
 
     /**
-     * Метод для отправки данных несколькими пакетами, если они не помещаются в один пакет
-     * @param address адрес получателя
-     * @param message данные для отправки
+     * РњРµС‚РѕРґ РґР»СЏ РѕС‚РїСЂР°РІРєРё РґР°РЅРЅС‹С… РЅРµСЃРєРѕР»СЊРєРёРјРё РїР°РєРµС‚Р°РјРё, РµСЃР»Рё РѕРЅРё РЅРµ РїРѕРјРµС‰Р°СЋС‚СЃСЏ РІ РѕРґРёРЅ РїР°РєРµС‚
+     * @param address Р°РґСЂРµСЃ РїРѕР»СѓС‡Р°С‚РµР»СЏ
+     * @param message РґР°РЅРЅС‹Рµ РґР»СЏ РѕС‚РїСЂР°РІРєРё
      */
     private void packetSampling(SocketAddress address, byte[] message) throws IOException {
         byte[][] packets = new byte[(message.length - message.length % MAX_PACKET_SIZE)/MAX_PACKET_SIZE+1][];
@@ -133,8 +133,8 @@ public class ConnectionManager {
     }
 
     /**
-     * Увеличивает буффер до определённого размера
-     * @param size размер, до которого нужно увеличить буффер
+     * РЈРІРµР»РёС‡РёРІР°РµС‚ Р±СѓС„С„РµСЂ РґРѕ РѕРїСЂРµРґРµР»С‘РЅРЅРѕРіРѕ СЂР°Р·РјРµСЂР°
+     * @param size СЂР°Р·РјРµСЂ, РґРѕ РєРѕС‚РѕСЂРѕРіРѕ РЅСѓР¶РЅРѕ СѓРІРµР»РёС‡РёС‚СЊ Р±СѓС„С„РµСЂ
      * @deprecated
      */
     private void increaseBufferSize(int size){
@@ -145,8 +145,8 @@ public class ConnectionManager {
     }
 
     /**
-     * Получает один набор данных, получение пакета меньше максимального размера означает конец набора
-     * @return массив содержащих только полученные данные (бех нулей)
+     * РџРѕР»СѓС‡Р°РµС‚ РѕРґРёРЅ РЅР°Р±РѕСЂ РґР°РЅРЅС‹С…, РїРѕР»СѓС‡РµРЅРёРµ РїР°РєРµС‚Р° РјРµРЅСЊС€Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СЂР°Р·РјРµСЂР° РѕР·РЅР°С‡Р°РµС‚ РєРѕРЅРµС† РЅР°Р±РѕСЂР°
+     * @return РјР°СЃСЃРёРІ СЃРѕРґРµСЂР¶Р°С‰РёС… С‚РѕР»СЊРєРѕ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ (Р±РµС… РЅСѓР»РµР№)
      */
     private byte[] receiveData() throws IOException {
         byte[] tempBuffer = new byte[MAX_PACKET_SIZE];
@@ -177,7 +177,7 @@ public class ConnectionManager {
     }
     public static byte[] increaseByteArray(byte[] array, int newLength){
         if(newLength < array.length)
-            throw new IllegalArgumentException("Новая длина должна быть больше текущей");
+            throw new IllegalArgumentException("РќРѕРІР°СЏ РґР»РёРЅР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ С‚РµРєСѓС‰РµР№");
         byte[] buff = new byte[newLength];
         System.arraycopy(array, 0, buff, 0, newLength);
         return buff;

@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,18 +10,18 @@ import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 
 /**
- * Класс Show реализует интерфейс Command
+ * РљР»Р°СЃСЃ Show СЂРµР°Р»РёР·СѓРµС‚ РёРЅС‚РµСЂС„РµР№СЃ Command
  */
 public class Show implements Command, Serializable {
     /**
-     * Конструктор класса Show
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР° Show
      */
     public Show() {
     }
 
     /**
-     * Метод выводит коллекцию маршрутов
-     * @return коллекция маршрутов
+     * РњРµС‚РѕРґ РІС‹РІРѕРґРёС‚ РєРѕР»Р»РµРєС†РёСЋ РјР°СЂС€СЂСѓС‚РѕРІ
+     * @return РєРѕР»Р»РµРєС†РёСЏ РјР°СЂС€СЂСѓС‚РѕРІ
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {

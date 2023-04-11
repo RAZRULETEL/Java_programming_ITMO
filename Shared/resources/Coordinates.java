@@ -1,4 +1,4 @@
-package Shared.resources;
+﻿package Shared.resources;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Coordinates implements Serializable {
     public static final int MIN_X = -819;
 
-    private double x; //Значение поля должно быть больше -819
+    private double x; //Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ -819
     private int y;
 
     public Coordinates() {}
@@ -22,7 +22,7 @@ public class Coordinates implements Serializable {
     public void setX(double x) {
         if(x > MIN_X)
             this.x = x;
-        else throw new IllegalArgumentException("x должен быть больше "+MIN_X);
+        else throw new IllegalArgumentException("x РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ "+MIN_X);
     }
 
     public void setY(int y) {

@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 
@@ -9,16 +9,16 @@ import Shared.commands.interfaces.ObjectCommand;
 import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 /**
- * Класс для замены элемента в коллекции по ключу, если новый элемент меньше старого
+ * РљР»Р°СЃСЃ РґР»СЏ Р·Р°РјРµРЅС‹ СЌР»РµРјРµРЅС‚Р° РІ РєРѕР»Р»РµРєС†РёРё РїРѕ РєР»СЋС‡Сѓ, РµСЃР»Рё РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РјРµРЅСЊС€Рµ СЃС‚Р°СЂРѕРіРѕ
  */
 public class ReplaceLower implements ObjectCommand, Serializable {
     /**
-     * Новый элемент
+     * РќРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
      */
     private Route route;
 
     /**
-     * Аргументы команды
+     * РђСЂРіСѓРјРµРЅС‚С‹ РєРѕРјР°РЅРґС‹
      */
     private int key;
 
@@ -28,14 +28,14 @@ public class ReplaceLower implements ObjectCommand, Serializable {
     @Override
     public ResultDTO validate(String[] args) {
         if (args != null && args.length == 1) {
-            StringDTO keyValidation = validateInt(args[0], "ключ");
+            StringDTO keyValidation = validateInt(args[0], "РєР»СЋС‡");
             if (keyValidation.getSuccess()) {
                 this.key = Integer.parseInt(keyValidation.getStatus());
                 return new ResultDTO(true);
             } else
                 return keyValidation;
         } else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
@@ -43,21 +43,21 @@ public class ReplaceLower implements ObjectCommand, Serializable {
         if(route !=null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false,"Route не может быть null");
+            return new StringDTO(false,"Route РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
     }
 /**
- * Заменяет элемент в коллекции по ключу, если новый элемент меньше заданного
- * @return сообщение о результате выполнения команды
+ * Р—Р°РјРµРЅСЏРµС‚ СЌР»РµРјРµРЅС‚ РІ РєРѕР»Р»РµРєС†РёРё РїРѕ РєР»СЋС‡Сѓ, РµСЃР»Рё РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РјРµРЅСЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ
+ * @return СЃРѕРѕР±С‰РµРЅРёРµ Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹
  */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
         if(collection.getAll().get(key) == null)
-            return new StringDTO(false,  "Элемента с таким ключом не существует");
+            return new StringDTO(false,  "Р­Р»РµРјРµРЅС‚Р° СЃ С‚Р°РєРёРј РєР»СЋС‡РѕРј РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
         if (collection.getAll().get(key).compareTo(route) < 0) {
             collection.put(key, route);
-            return new StringDTO(true, "Элемент успешно заменён");
+            return new StringDTO(true, "Р­Р»РµРјРµРЅС‚ СѓСЃРїРµС€РЅРѕ Р·Р°РјРµРЅС‘РЅ");
         }else
-            return new StringDTO(false, "Элемент оказался больше");
+            return new StringDTO(false, "Р­Р»РµРјРµРЅС‚ РѕРєР°Р·Р°Р»СЃСЏ Р±РѕР»СЊС€Рµ");
     }
 
     @Override
@@ -66,6 +66,6 @@ public class ReplaceLower implements ObjectCommand, Serializable {
             route = ((Route)obj);
             return new ResultDTO(true);
         }else
-            return new StringDTO(false, "Требуется объект типа Route");
+            return new StringDTO(false, "РўСЂРµР±СѓРµС‚СЃСЏ РѕР±СЉРµРєС‚ С‚РёРїР° Route");
     }
 }

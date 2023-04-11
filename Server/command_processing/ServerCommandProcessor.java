@@ -1,4 +1,4 @@
-package Server.command_processing;
+п»їpackage Server.command_processing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,13 +79,13 @@ public class ServerCommandProcessor extends CommandProcessor {
             command = (Command) Serializer.deserialize(new String(serializedCommand).replace("Client", "Server").getBytes());
         } catch (IOException e) {
             LOGGER.error("Object deserialization error");
-            return new StringDTO(false,  "Ошибка десериализации команды, вероятно данные были потеряны");
+            return new StringDTO(false,  "РћС€РёР±РєР° РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёРё РєРѕРјР°РЅРґС‹, РІРµСЂРѕСЏС‚РЅРѕ РґР°РЅРЅС‹Рµ Р±С‹Р»Рё РїРѕС‚РµСЂСЏРЅС‹");
         } catch (ClassNotFoundException e) {
             LOGGER.error("Object class not found: {}", e.getMessage());
-            return new StringDTO(false, "Класс данного объекта не найден");
+            return new StringDTO(false, "РљР»Р°СЃСЃ РґР°РЅРЅРѕРіРѕ РѕР±СЉРµРєС‚Р° РЅРµ РЅР°Р№РґРµРЅ");
         }
         if(!clientAllowedCommands.contains(command.getClass()))
-            return new StringDTO(false, "Выполнение данной команды запрещенно");
+            return new StringDTO(false, "Р’С‹РїРѕР»РЅРµРЅРёРµ РґР°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹ Р·Р°РїСЂРµС‰РµРЅРЅРѕ");
         return processCommand(command);
     }
 

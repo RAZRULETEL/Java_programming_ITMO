@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,21 +9,21 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 /**
- * Класс для получения информации о коллекции
+ * РљР»Р°СЃСЃ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРѕР»Р»РµРєС†РёРё
  */
 public class Info implements Command, Serializable {
     /**
-     * Конструктор для инициализации полей класса
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїРѕР»РµР№ РєР»Р°СЃСЃР°
      */
     public Info() {
     }
 
     /**
-     * Метод для получения информации о коллекции
-     * @return строка с информацией о коллекции
+     * РњРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё Рѕ РєРѕР»Р»РµРєС†РёРё
+     * @return СЃС‚СЂРѕРєР° СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РєРѕР»Р»РµРєС†РёРё
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
-        return new StringDTO(true,  "Коллекция типа " + collection.getAll().getClass().getName() + ", содержит " + collection.getAll().size() + " элементов, инициализирована " + new Date(collection.initTime));
+        return new StringDTO(true,  "РљРѕР»Р»РµРєС†РёСЏ С‚РёРїР° " + collection.getAll().getClass().getName() + ", СЃРѕРґРµСЂР¶РёС‚ " + collection.getAll().size() + " СЌР»РµРјРµРЅС‚РѕРІ, РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅР° " + new Date(collection.initTime));
     }
 }

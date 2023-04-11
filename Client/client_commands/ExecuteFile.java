@@ -1,4 +1,4 @@
-package Client.client_commands;
+п»їpackage Client.client_commands;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,37 +28,37 @@ public class ExecuteFile implements StreamCommand, LocalCommand {
             this.inputStream = inStream;
             return new ResultDTO(true);
         }else
-            return new StringDTO(false, "Поток не может быть null");
+            return new StringDTO(false, "РџРѕС‚РѕРє РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
     }
 
     @Override
     public ResultDTO validate(String[] args){
         if(args != null && args.length == 1) {
-            StringDTO nameValidation = validateString(args[0], "подстрока");
+            StringDTO nameValidation = validateString(args[0], "РїРѕРґСЃС‚СЂРѕРєР°");
             if(nameValidation.getSuccess()) {
                 this.fileName = nameValidation.getStatus();
                 InputStream script;
                 try {
                     script = new FileInputStream(fileName);
                 } catch (FileNotFoundException e) {
-                    return new StringDTO(false, "Такого файла не существует");
+                    return new StringDTO(false, "РўР°РєРѕРіРѕ С„Р°Р№Р»Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
                 }
                 CommandProcessor processor = new ClientCommandProcessor();
                 commands = new ArrayList<>();
                 commands = processor.processStream(script);
 
-                return new StringDTO(true, "Скрипт успешно выполнен");
+                return new StringDTO(true, "РЎРєСЂРёРїС‚ СѓСЃРїРµС€РЅРѕ РІС‹РїРѕР»РЅРµРЅ");
             }else
                 return nameValidation;
         }else
-            return new StringDTO(false, "Вы указали неверное количество аргументов");
+            return new StringDTO(false, "Р’С‹ СѓРєР°Р·Р°Р»Рё РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ");
     }
 
     @Override
     public ResultDTO isValid(){
         if(commands != null)
             return new ResultDTO(true);
-        return new StringDTO(false, "Файл не был указан, либо его не удалось считать");
+        return new StringDTO(false, "Р¤Р°Р№Р» РЅРµ Р±С‹Р» СѓРєР°Р·Р°РЅ, Р»РёР±Рѕ РµРіРѕ РЅРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ");
     }
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
@@ -68,6 +68,6 @@ public class ExecuteFile implements StreamCommand, LocalCommand {
             processor.printResult(NetworkTools.receiveAnswer());
         }
         commands = null;
-        return new StringDTO(true, "Выполнеине скрипта успешно завершено");
+        return new StringDTO(true, "Р’С‹РїРѕР»РЅРµРёРЅРµ СЃРєСЂРёРїС‚Р° СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅРѕ");
     }
 }

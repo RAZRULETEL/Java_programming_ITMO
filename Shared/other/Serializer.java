@@ -1,4 +1,4 @@
-package Shared.other;
+﻿package Shared.other;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

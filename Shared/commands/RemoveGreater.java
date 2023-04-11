@@ -1,4 +1,4 @@
-package Shared.commands;
+п»їpackage Shared.commands;
 
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
@@ -8,13 +8,13 @@ import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 
 /**
- * Класс для удаления из коллекции всех элементов, превышающих заданный
+ * РљР»Р°СЃСЃ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РёР· РєРѕР»Р»РµРєС†РёРё РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ, РїСЂРµРІС‹С€Р°СЋС‰РёС… Р·Р°РґР°РЅРЅС‹Р№
  */
 public class RemoveGreater implements ObjectCommand {
     private Route route;
 
     /**
-     * Конструктор для создания объекта с заданными параметрами
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р° СЃ Р·Р°РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё
      *
      */
     public RemoveGreater() {
@@ -26,12 +26,12 @@ public class RemoveGreater implements ObjectCommand {
         if(route != null)
             return new ResultDTO(true);
         else
-            return new StringDTO(false, "Route не может быть null");
+            return new StringDTO(false, "Route РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
     }
     /**
-     * Метод для удаления из коллекции всех элементов, превышающих заданный
+     * РњРµС‚РѕРґ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ РёР· РєРѕР»Р»РµРєС†РёРё РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ, РїСЂРµРІС‹С€Р°СЋС‰РёС… Р·Р°РґР°РЅРЅС‹Р№
      *
-     * @return строка с количеством удаленных элементов
+     * @return СЃС‚СЂРѕРєР° СЃ РєРѕР»РёС‡РµСЃС‚РІРѕРј СѓРґР°Р»РµРЅРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
      */
     @Override
     public ResultDTO execute(AbstractRouteCollection collection) {
@@ -41,7 +41,7 @@ public class RemoveGreater implements ObjectCommand {
                 collection.remove(key);
                 count++;
             }
-        return new StringDTO(true, "Удалено "+count+" элементов");
+        return new StringDTO(true, "РЈРґР°Р»РµРЅРѕ "+count+" СЌР»РµРјРµРЅС‚РѕРІ");
     }
 
     @Override
@@ -50,6 +50,6 @@ public class RemoveGreater implements ObjectCommand {
             route = ((Route)obj);
             return new ResultDTO(true);
         }else
-            return new StringDTO(false, "Требуется объект типа Route");
+            return new StringDTO(false, "РўСЂРµР±СѓРµС‚СЃСЏ РѕР±СЉРµРєС‚ С‚РёРїР° Route");
     }
 }

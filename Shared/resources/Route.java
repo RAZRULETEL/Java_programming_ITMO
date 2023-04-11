@@ -1,4 +1,4 @@
-package Shared.resources;
+﻿package Shared.resources;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -10,13 +10,13 @@ public class Route implements Comparable<Route>, Serializable {
     public static final int MIN_ID = 0;
     public static final int MIN_DISTANCE = 1;
 
-    private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private Location from; //Поле не может быть null
-    private Location to; //Поле может быть null
-    private Integer distance; //Поле может быть null, Значение поля должно быть больше 1
+    private int id; //Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 0, Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СѓРЅРёРєР°Р»СЊРЅС‹Рј, Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+    private String name; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, РЎС‚СЂРѕРєР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№
+    private Coordinates coordinates; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private java.time.ZonedDateTime creationDate; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, Р—РЅР°С‡РµРЅРёРµ СЌС‚РѕРіРѕ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ РіРµРЅРµСЂРёСЂРѕРІР°С‚СЊСЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё
+    private Location from; //РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private Location to; //РџРѕР»Рµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null
+    private Integer distance; //РџРѕР»Рµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, Р—РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ 1
 
     {
         creationDate = java.time.ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("GMT+3"));
@@ -47,7 +47,7 @@ public class Route implements Comparable<Route>, Serializable {
      */
     public void setName(String name) {
         if(name == null || name.equals(""))
-            throw new IllegalArgumentException("name не может быть null, либо пустой строкой");
+            throw new IllegalArgumentException("name РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null, Р»РёР±Рѕ РїСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРѕР№");
         this.name = name;
     }
 
@@ -65,7 +65,7 @@ public class Route implements Comparable<Route>, Serializable {
      */
     public void setCoordinates(Coordinates coordinates) {
         if(coordinates == null)
-            throw new IllegalArgumentException("coordinates не может быть null");
+            throw new IllegalArgumentException("coordinates РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
         this.coordinates = coordinates;
     }
 
@@ -99,7 +99,7 @@ public class Route implements Comparable<Route>, Serializable {
      */
     public void setFrom(Location from) {
         if(from == null)
-            throw new IllegalArgumentException("Location from не может быть null");
+            throw new IllegalArgumentException("Location from РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ null");
         this.from = from;
     }
 
@@ -134,7 +134,7 @@ public class Route implements Comparable<Route>, Serializable {
     public void setDistance(Integer distance) {
         if(distance == null || distance > 1)
             this.distance = distance;
-        else throw new IllegalArgumentException("distance должен быть больше "+MIN_DISTANCE);
+        else throw new IllegalArgumentException("distance РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ "+MIN_DISTANCE);
     }
     @Override
     public String toString() {
