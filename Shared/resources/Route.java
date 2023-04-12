@@ -136,6 +136,7 @@ public class Route implements Comparable<Route>, Serializable {
             this.distance = distance;
         else throw new IllegalArgumentException("distance РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р±РѕР»СЊС€Рµ "+MIN_DISTANCE);
     }
+
     @Override
     public String toString() {
         return "Route{" +

@@ -122,7 +122,7 @@ public class RouteBuilder implements Serializable {
     private Double createDouble(boolean canBeNull){
         fieldType = "double";
         System.out.println(getDescription());
-        String line = readInputLine();
+        String line = readInputLine().replace(",", ".");
         if(canBeNull && line.equals(""))
             return null;
         try {
@@ -137,7 +137,7 @@ public class RouteBuilder implements Serializable {
     private Float createFloat(boolean canBeNull){
         fieldType = "float";
         System.out.println(getDescription());
-        String line = readInputLine();
+        String line = readInputLine().replace(",", ".");
         if(canBeNull && line.equals(""))
             return null;
         try {

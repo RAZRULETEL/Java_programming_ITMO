@@ -1,5 +1,6 @@
 ﻿package Shared.commands;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Shared.command_processing.ArrayDTO;
@@ -9,7 +10,7 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 import Shared.resources.Route;
 
-public class ContainsName implements Command {
+public class ContainsName implements Command, Serializable {
     private String name;
     public ContainsName(){}
 

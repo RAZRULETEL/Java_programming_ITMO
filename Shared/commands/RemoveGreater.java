@@ -1,5 +1,7 @@
 ﻿package Shared.commands;
 
+import java.io.Serializable;
+
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
 import Shared.commands.interfaces.Command;
@@ -10,7 +12,7 @@ import Shared.resources.Route;
 /**
  * Класс для удаления из коллекции всех элементов, превышающих заданный
  */
-public class RemoveGreater implements ObjectCommand {
+public class RemoveGreater implements ObjectCommand, Serializable {
     private Route route;
 
     /**

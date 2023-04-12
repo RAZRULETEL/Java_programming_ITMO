@@ -2,6 +2,8 @@
 
 import java.io.Serializable;
 
+import Client.NetworkTools;
+import Client.command_processing.ClientCommandProcessor;
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
 import Shared.commands.interfaces.Command;
@@ -18,12 +20,19 @@ public class UpdateById implements ObjectCommand, Serializable {
     @Override
     public ResultDTO validate(String[] args) {
         if(args != null && args.length == 1) {
-            StringDTO keyValidation = validateInt(args[0], "id");
-            if(keyValidation.getSuccess()){
-                this.id = Integer.parseInt(keyValidation.getStatus());
+            StringDTO idValidation = validateInt(args[0], "id", Route.MIN_ID, Integer.MAX_VALUE);
+            if(idValidation.getSuccess()){
+                this.id = Integer.parseInt(idValidation.getStatus());
+
+                Command idValidator = new CheckIdExists();
+                idValidator.validate(args);
+                NetworkTools.sendCommand(idValidator);
+                ResultDTO idValidationRes = NetworkTools.receiveAnswer();
+                if(idValidationRes == null || !idValidationRes.getSuccess())
+                    return idValidationRes instanceof StringDTO ? idValidationRes : new StringDTO(false, "Похоже что данного id не существует");
                 return new ResultDTO(true);
             }else
-                return keyValidation;
+                return idValidation;
         }else
             return new StringDTO(false, "Вы указали неверное количество аргументов");
     }
@@ -32,7 +41,7 @@ public class UpdateById implements ObjectCommand, Serializable {
     public ResultDTO execute(AbstractRouteCollection collection) {
         for(int k : collection.getAll().keySet())
             if(collection.getAll().get(k).getId() == id) {
-                collection.put(id, route);
+                collection.put(k, route);
                 return new StringDTO(true, "Объект "+route+" успешно изменён");
             }
             return new StringDTO(false, "Объекта с данным id не существует");

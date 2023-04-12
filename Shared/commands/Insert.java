@@ -3,6 +3,7 @@
 import java.io.InputStream;
 import java.io.Serializable;
 
+import Client.NetworkTools;
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
 import Shared.commands.interfaces.Command;
@@ -24,6 +25,13 @@ public class Insert implements ObjectCommand, Serializable {
             StringDTO keyValidation = validateInt(args[0], "ключ");
             if(keyValidation.getSuccess()){
                 this.key = Integer.parseInt(keyValidation.getStatus());
+
+                Command idValidator = new CheckKeyExists();
+                idValidator.validate(args);
+                NetworkTools.sendCommand(idValidator);
+                ResultDTO idValidationRes = NetworkTools.receiveAnswer();
+                if(idValidationRes.getSuccess())
+                    return idValidationRes instanceof StringDTO ? idValidationRes : new StringDTO(false, "Похоже что данный ключ уже существует");
                 return new ResultDTO(true);
             }else
                 return keyValidation;

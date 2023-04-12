@@ -2,6 +2,7 @@
 
 import java.io.Serializable;
 
+import Client.NetworkTools;
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
 import Shared.commands.interfaces.Command;
@@ -31,6 +32,13 @@ public class ReplaceLower implements ObjectCommand, Serializable {
             StringDTO keyValidation = validateInt(args[0], "ключ");
             if (keyValidation.getSuccess()) {
                 this.key = Integer.parseInt(keyValidation.getStatus());
+
+                Command keyValidator = new CheckKeyExists();
+                keyValidator.validate(args);
+                NetworkTools.sendCommand(keyValidator);
+                ResultDTO keyValidationRes = NetworkTools.receiveAnswer();
+                if(keyValidationRes == null || !keyValidationRes.getSuccess())
+                    return keyValidationRes instanceof StringDTO ? keyValidationRes : new StringDTO(false, "Похоже что данного ключа не существует");
                 return new ResultDTO(true);
             } else
                 return keyValidation;

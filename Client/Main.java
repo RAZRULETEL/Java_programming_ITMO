@@ -28,7 +28,7 @@ public class Main {
         if(args.length > 0)
         for(;;)
             if (consoleReader.hasNextLine()) {
-                String consoleString = consoleReader.nextLine();
+                String consoleString = consoleReader.nextLine().trim();
                 Optional<Command> command = mainProcessor.processLine(consoleString);
                 command.ifPresent(value -> mainProcessor.printResult(mainProcessor.processCommand(value)));
                 System.out.print("-->");

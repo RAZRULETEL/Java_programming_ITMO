@@ -14,6 +14,8 @@ import Server.network_modules.ConnectionManager;
 import Shared.command_processing.CommandProcessor;
 import Shared.command_processing.ResultDTO;
 import Shared.command_processing.StringDTO;
+import Shared.commands.CheckIdExists;
+import Shared.commands.CheckKeyExists;
 import Shared.commands.Clear;
 import Shared.commands.ContainsName;
 import Shared.commands.Exit;
@@ -24,6 +26,7 @@ import Shared.commands.PrintUniqueDistance;
 import Shared.commands.RemoveByKey;
 import Shared.commands.RemoveGreater;
 import Shared.commands.RemoveGreaterKey;
+import Shared.commands.ReplaceLower;
 import Shared.commands.Save;
 import Shared.commands.Show;
 import Shared.commands.StartsWithName;
@@ -53,6 +56,9 @@ public class ServerCommandProcessor extends CommandProcessor {
         clientAllowedCommands.add(ContainsName.class);
         clientAllowedCommands.add(StartsWithName.class);
         clientAllowedCommands.add(PrintUniqueDistance.class);
+        clientAllowedCommands.add(CheckIdExists.class);
+        clientAllowedCommands.add(ReplaceLower.class);
+        clientAllowedCommands.add(CheckKeyExists.class);
     }
 
     private final AbstractRouteCollection collection;
@@ -97,6 +103,8 @@ public class ServerCommandProcessor extends CommandProcessor {
             args = new String[line.split(" ").length-1];
             System.arraycopy(line.split(" "), 1, args, 0, line.split(" ").length - 1);
         }
+        if(commandMap.get(command) == null)
+            return Optional.empty();
         return Optional.of(commandMap.get(command));
     }
 

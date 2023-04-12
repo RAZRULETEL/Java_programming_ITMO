@@ -54,6 +54,7 @@ public class ClientCommandProcessor extends CommandProcessor {
         commandMap.put("filter_contains_name", new ContainsName());
         commandMap.put("filter_starts_with_name", new StartsWithName());
         commandMap.put("print_unique_distance", new PrintUniqueDistance());
+        commandMap.put("replace_if_lower", new ReplaceLower());
     }
     public ClientCommandProcessor(){
         inputStream = System.in;

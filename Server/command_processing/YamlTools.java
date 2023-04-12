@@ -22,15 +22,15 @@ import Server.network_modules.ConnectionManager;
 import Shared.resources.Route;
 
 /**
- * Класс YamlTools предоставляет методы для работы с файлами формата YAML.
+ * YamlTools used to manipulate YAML data and files.
  */
 public class YamlTools {
     private static final Logger LOGGER = LoggerFactory.getLogger(YamlTools.class);
     /**
-     * Загружает данные из файла формата YAML.
+     *  Used to load collection from yaml file
      *
-     * @param fileName имя файла
-     * @return массив объектов Route
+     * @param fileName file to load
+     * @return collection - HashMap<Integer, Route>
      */
     public static HashMap<Integer, Route> load(String fileName){
         LOGGER.info("Loading collection from file {}", fileName);
@@ -40,8 +40,7 @@ public class YamlTools {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Такого файла не существует");
-            LOGGER.error(Arrays.toString(e.getStackTrace()));
+            LOGGER.error("File not found");
             return null;
         }
         while(scanner.hasNextLine())
@@ -55,11 +54,9 @@ public class YamlTools {
         try {
             collection = objectMapper.readValue(yamlContent.toString(), typeRef);
         }catch (MismatchedInputException e){
-            System.out.println("Файл пустой, либо содержит неккоректные данные");
-            LOGGER.error(Arrays.toString(e.getStackTrace()));
+            LOGGER.error("Fail load error");
         }catch (IOException e) {
-            LOGGER.error(Arrays.toString(e.getStackTrace()));
-            System.out.println("Непредвиденная ошибка чтения файла");
+            LOGGER.error("Fail load error");
         }
         HashMap<Integer, Route> output = new HashMap<Integer, Route>();
 
@@ -73,11 +70,11 @@ public class YamlTools {
         return output;
     }
     /**
-     * Сохраняет данные в файл формата YAML.
+     * ????????? ?????? ? ???? ??????? YAML.
      *
-     * @param collection коллекция объектов Route
-     * @param fileName имя файла
-     * @return true, если сохранение прошло успешно, иначе false
+     * @param collection ????????? ???????? Route
+     * @param fileName ??? ?????
+     * @return true, ???? ?????????? ?????? ???????, ????? false
      */
     public static boolean save(HashMap<Integer, Route> collection, String fileName){
         LOGGER.info("Saving collection to file {}", fileName);
@@ -90,7 +87,7 @@ public class YamlTools {
             fileOutputStream.write(content.getBytes());
             return true;
         } catch (IOException e) {
-            LOGGER.error(Arrays.toString(e.getStackTrace()));
+            LOGGER.error("Collection save error");
             return false;
         }
     }

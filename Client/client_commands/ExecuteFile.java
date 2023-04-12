@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 import Client.NetworkTools;
@@ -19,6 +20,7 @@ import Shared.commands.interfaces.StreamCommand;
 import Shared.resources.AbstractRouteCollection;
 
 public class ExecuteFile implements StreamCommand, LocalCommand {
+    private static HashSet<String> files = new HashSet<String>();
     private InputStream inputStream;
     private String fileName;
     private ArrayList<Command> commands = null;
@@ -43,6 +45,9 @@ public class ExecuteFile implements StreamCommand, LocalCommand {
                 } catch (FileNotFoundException e) {
                     return new StringDTO(false, "Такого файла не существует");
                 }
+                if(files.contains(fileName))
+                    return new StringDTO(false, "Данный скрипт уже выполнялся, рекурсия запрещена");
+                files.add(fileName);
                 CommandProcessor processor = new ClientCommandProcessor();
                 commands = new ArrayList<>();
                 commands = processor.processStream(script);
@@ -64,10 +69,10 @@ public class ExecuteFile implements StreamCommand, LocalCommand {
     public ResultDTO execute(AbstractRouteCollection collection) {
         ClientCommandProcessor processor = new ClientCommandProcessor();
         for(Command command: commands){
-            NetworkTools.sendCommand(command);
-            processor.printResult(NetworkTools.receiveAnswer());
+            processor.printResult(processor.processCommand(command));
         }
         commands = null;
+        files = new HashSet<>();
         return new StringDTO(true, "Выполнеине скрипта успешно завершено");
     }
 }

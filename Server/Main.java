@@ -35,7 +35,7 @@ public class Main {
 
         ConnectionManager server = new ConnectionManager(port);
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {System.out.println(mainProcessor.processCommand(new Save()));}));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {mainProcessor.printResult(mainProcessor.processCommand(new Save()));}));
 
         LOGGER.info("Server started listening packets");
         while(true){
@@ -47,7 +47,7 @@ public class Main {
             try {
             if (consoleReader.ready()){
                 mainProcessor.processLine(consoleReader.readLine())
-                        .ifPresentOrElse(value -> System.out.println(mainProcessor.processCommand(value))
+                        .ifPresentOrElse(value -> mainProcessor.printResult(mainProcessor.processCommand(value))
                                 , () -> {System.out.println("Похоже, что данной команды не существует, доступны следующие команды: "+mainProcessor.getServerCommands());});
             }
             } catch (IOException ignored) {}

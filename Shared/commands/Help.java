@@ -8,6 +8,7 @@ import Shared.commands.interfaces.Command;
 import Shared.resources.AbstractRouteCollection;
 
 public class Help implements Command, Serializable {
+
     /**
      * Constructor for Help class.
      */
@@ -28,7 +29,6 @@ public class Help implements Command, Serializable {
                 update id {element} : обновить значение элемента коллекции, id которого равен заданному
                 remove_key null : удалить элемент из коллекции по его ключу
                 clear : очистить коллекцию
-                save : сохранить коллекцию в файл
                 execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.
                 exit : завершить программу (без сохранения в файл)
                 remove_greater {element} : удалить из коллекции все элементы, превышающие заданный

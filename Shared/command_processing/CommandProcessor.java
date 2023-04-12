@@ -30,8 +30,9 @@ public abstract class CommandProcessor {
     public abstract ResultDTO processCommand(Command command);
     public void printResult(ResultDTO result){
         if(result instanceof StringDTO)
-            System.out.println((result.getSuccess() ? "" : "Error: ") + ((StringDTO) result).getStatus());
+            System.out.print((result.getSuccess() ? "" : "Error: ") + ((StringDTO) result).getStatus());
         if(result instanceof ArrayDTO)
             System.out.print(Arrays.toString(((ArrayDTO) result).getData()));
+        System.out.println();
     }
 }

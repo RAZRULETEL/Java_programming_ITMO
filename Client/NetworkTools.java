@@ -120,5 +120,4 @@ public class NetworkTools {
             System.out.println("Разделить команду не удалось, отправка прервана");
         }
     }
-
 }
