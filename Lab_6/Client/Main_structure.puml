@@ -1,0 +1,621 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 10,
+    "backwardDepth": 10,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "None", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 7,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Client.Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+AbstractRouteCollection272336892[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AbstractRouteCollection</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   collection: HashMap&lt;Integer, Route&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   initTime: Long [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(key: int): Route</TD></TR>
+<TR><TD ALIGN="LEFT" >+ put(key: int, route: Route)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(id: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CheckIdExists1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CheckIdExists</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CheckKeyExists1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CheckKeyExists</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Clear1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Clear</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ClientCommandProcessor1987040106[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ClientCommandProcessor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   commandMap: HashMap&lt;String, Command&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputStream: InputStream [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ processCommand(command: Command): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processLine(line: String): Optional&lt;Command&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CommandProcessor1630408848[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CommandProcessor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   inputStream: InputStream [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ printResult(result: ResultDTO)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processCommand(command: Command): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processLine(line: String): Optional&lt;Command&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processStream(inStream: InputStream): ArrayList&lt;Command&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ContainsName1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ContainsName</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Coordinates272336892[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Coordinates</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   x: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: int [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ExecuteFile1438325639[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ExecuteFile</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   commands: ArrayList&lt;Command&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fileName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   inputStream: InputStream [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setStream(inStream: InputStream): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Exit1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Exit</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Help1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Help</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Info1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Info</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Insert1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Insert</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   route: Route [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setObject(obj: Object): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Location272336892[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Location</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   x: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   y: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   z: double [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Main2021122027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyCollection526726386[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyCollection</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   collection: HashMap&lt;Integer, Route&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(key: int): Route</TD></TR>
+<TR><TD ALIGN="LEFT" >+ put(key: int, route: Route)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(id: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NetworkTools2021122027[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NetworkTools</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- packetSampling(payload: byte[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ receiveAnswer(): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >- receivePacket(container: byte[], offset: int): byte[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendCommand(command: Command, port: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sendCommand(command: Command): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PrintUniqueDistance1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PrintUniqueDistance</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RemoveByKey1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RemoveByKey</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RemoveGreater1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RemoveGreater</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   route: Route [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setObject(obj: Object): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RemoveGreaterKey1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RemoveGreaterKey</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ReplaceLower1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ReplaceLower</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   key: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   route: Route [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setObject(obj: Object): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Route272336892[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Route</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coordinates: Coordinates [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   creationDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   distance: Integer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   from: Location [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   to: Location [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(route: Route): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RouteBuilder272336892[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RouteBuilder</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   buff: Object [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   descriptionIndex: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   error: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fieldRequirments: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fieldType: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lineReader: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ build(): Route</TD></TR>
+<TR><TD ALIGN="LEFT" >- createCoords(): Coordinates</TD></TR>
+<TR><TD ALIGN="LEFT" >- createDistance(): Integer</TD></TR>
+<TR><TD ALIGN="LEFT" >- createDouble(canBeNull: boolean): Double</TD></TR>
+<TR><TD ALIGN="LEFT" >- createFloat(canBeNull: boolean): Float</TD></TR>
+<TR><TD ALIGN="LEFT" >- createInt(canBeNull: boolean): Integer</TD></TR>
+<TR><TD ALIGN="LEFT" >- createLocation(canBeNull: boolean): Location</TD></TR>
+<TR><TD ALIGN="LEFT" >- createString(canBeEmpty: boolean): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- nextDescription()</TD></TR>
+<TR><TD ALIGN="LEFT" >- prevDescription()</TD></TR>
+<TR><TD ALIGN="LEFT" >- readInputLine(): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Save1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Save</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   fileName: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Serializer1939485593[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Serializer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ deserialize(bytes: byte[]): Object</TD></TR>
+<TR><TD ALIGN="LEFT" >+ serialize(object: Object): byte[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ServerCommandProcessor526726386[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ServerCommandProcessor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   collection: AbstractRouteCollection [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   commandMap: HashMap&lt;String, Command&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ processClientBytes(serializedCommand: byte[]): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processCommand(command: Command): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processLine(line: String): Optional&lt;Command&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Show1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Show</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+StartsWithName1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)StartsWithName</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UpdateById1548429777[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UpdateById</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   route: Route [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ execute(collection: AbstractRouteCollection): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setObject(obj: Object): ResultDTO</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validate(args: String[]): ResultDTO</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+YamlTools526726386[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)YamlTools</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ load(fileName: String): HashMap&lt;Integer, Route&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ save(collection: HashMap&lt;Integer, Route&gt;, fileName: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+'edges    
+AbstractRouteCollection272336892 -> MyCollection526726386[arrowhead=none, arrowtail=empty, dir=both];
+AbstractRouteCollection272336892 -> Route272336892[label="collection
+[0..*]"];
+Clear1548429777 -> AbstractRouteCollection272336892[label="execute() -> clear()"];
+ClientCommandProcessor1987040106 -> Insert1548429777[arrowhead=none];
+ClientCommandProcessor1987040106 -> RemoveGreater1548429777[arrowhead=none];
+ClientCommandProcessor1987040106 -> ReplaceLower1548429777[arrowhead=none];
+ClientCommandProcessor1987040106 -> RouteBuilder272336892[label="processLine() -> build()"];
+ClientCommandProcessor1987040106 -> UpdateById1548429777[arrowhead=none];
+CommandProcessor1630408848 -> ClientCommandProcessor1987040106[arrowhead=none, arrowtail=empty, dir=both];
+CommandProcessor1630408848 -> ServerCommandProcessor526726386[arrowhead=none, arrowtail=empty, dir=both];
+Insert1548429777 -> CheckIdExists1548429777[arrowhead=none];
+Insert1548429777 -> CheckKeyExists1548429777[arrowhead=none];
+Insert1548429777 -> Clear1548429777[arrowhead=none];
+Insert1548429777 -> ContainsName1548429777[arrowhead=none];
+Insert1548429777 -> Exit1548429777[arrowhead=none];
+Insert1548429777 -> Help1548429777[arrowhead=none];
+Insert1548429777 -> Info1548429777[arrowhead=none];
+Insert1548429777 -> PrintUniqueDistance1548429777[arrowhead=none];
+Insert1548429777 -> RemoveByKey1548429777[arrowhead=none];
+Insert1548429777 -> RemoveGreater1548429777[label="execute() -> execute()", arrowhead=none];
+Insert1548429777 -> RemoveGreaterKey1548429777[arrowhead=none];
+Insert1548429777 -> Route272336892[label="route
+[0..1]"];
+Insert1548429777 -> Save1548429777[arrowhead=none];
+Insert1548429777 -> Show1548429777[arrowhead=none];
+Insert1548429777 -> StartsWithName1548429777[arrowhead=none];
+Main2021122027 -> CommandProcessor1630408848[label="main() -> printResult()"];
+MyCollection526726386 -> Route272336892[label="collection
+[0..*]"];
+RemoveByKey1548429777 -> AbstractRouteCollection272336892[label="execute() -> remove()"];
+RemoveGreater1548429777 -> AbstractRouteCollection272336892[label="execute() -> remove()"];
+RemoveGreater1548429777 -> Route272336892[label="route
+[0..1]"];
+RemoveGreaterKey1548429777 -> AbstractRouteCollection272336892[label="execute() -> remove()"];
+ReplaceLower1548429777 -> AbstractRouteCollection272336892[label="execute() -> put()"];
+ReplaceLower1548429777 -> Route272336892[label="route
+[0..1]"];
+Route272336892 -> Coordinates272336892[label="coordinates
+[0..1]"];
+Route272336892 -> Location272336892[label="from
+[0..1]"];
+Route272336892 -> Location272336892[label="to
+[0..1]"];
+Save1548429777 -> YamlTools526726386[label="execute() -> save()"];
+ServerCommandProcessor526726386 -> AbstractRouteCollection272336892[label="collection
+[0..1]"];
+ServerCommandProcessor526726386 -> Serializer1939485593[label="processClientBytes() -> deserialize()"];
+UpdateById1548429777 -> AbstractRouteCollection272336892[label="execute() -> put()"];
+UpdateById1548429777 -> Route272336892[label="route
+[0..1]"];
+    
+}
+@enduml
